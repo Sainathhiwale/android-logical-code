@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Volley- JsonObjectRequest</string>
+    <string name="request">Json Object Request</string>
+</resources>
