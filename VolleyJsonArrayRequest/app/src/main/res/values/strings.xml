@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Volley-JsonArrayRequest</string>
+    <string name="request">JsonArrayRequest</string>
+</resources>
