@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Volley-NetworkCache</string>
+    <string name="request">NetworkCache</string>
+</resources>
