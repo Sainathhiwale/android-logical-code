@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:id="@+id/et_Name"
+        android:hint="user name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_Password"
+        android:hint="user address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_Address"
+        android:hint="user address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_Age"
+        android:hint="user age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+    <EditText
+        android:id="@+id/et_Mobile"
+        android:hint="user mobile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp" />
+
+    <Button
+        android:textColor="#FFF"
+        android:text="Register"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="#FFc1"
+        android:onClick="registeruser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
