@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SOAPTest.iml" filepath="$PROJECT_DIR$/SOAPTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commons-io-2.4/commons-io-2.4.iml" filepath="$PROJECT_DIR$/commons-io-2.4/commons-io-2.4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ksoap2-android-assembly-2.6.5-jar-with-dependencies/ksoap2-android-assembly-2.6.5-jar-with-dependencies.iml" filepath="$PROJECT_DIR$/ksoap2-android-assembly-2.6.5-jar-with-dependencies/ksoap2-android-assembly-2.6.5-jar-with-dependencies.iml" />
+    </modules>
+  </component>
+</project>
