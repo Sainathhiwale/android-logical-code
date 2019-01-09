@@ -11,7 +11,7 @@ import com.bcil.twoline.R;
 import com.bcil.twoline.model.Gapscan;
 
 import java.util.List;
-
+//result the data
 public class ResultRecyclerAdapter extends RecyclerView.Adapter<ResultRecyclerAdapter.MyViewHolder> {
 
     private List<Gapscan> gapscanList;
