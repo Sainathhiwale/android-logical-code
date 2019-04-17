@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AnimalActivity">
+<!--style android:theme="@style/PrimaryButton"-->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:theme="@style/PrimaryButton"
+        android:typeface="monospace"
+        />
+
+    <!--Flat button  borderless style-->
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:theme="@style/PrimaryFlatButton"
+        android:typeface="monospace"
+        />
+    <!--drawable circle custom design-->
+    <Button
+        android:id="@+id/btnGet"
+        android:layout_marginTop="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:textSize="16sp"
+        android:text="@string/get"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/circel_button"
+        android:typeface="monospace"/>
+
+
+    <Button
+        android:id="@+id/btnCircle"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/get"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:background="@drawable/ovel_button"
+        android:typeface="monospace"/>
+
+    <Button
+        android:id="@+id/btnRectAngle"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="@string/get"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#FFFF"
+        android:background="@drawable/rectangle_button"
+        android:typeface="monospace"/>
+
+</LinearLayout>
