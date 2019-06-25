@@ -1,0 +1,6 @@
+jsonarray post request
+https://stackoverflow.com/questions/38366739/passing-json-array-using-retrofit
+
+Request{method=POST, url=http://192.168.2.14:8080/api/rfid/saveScanData, tags={}}
+
+https://stackoverflow.com/questions/42187238/send-list-to-server-with-retrofit2-1-0-android

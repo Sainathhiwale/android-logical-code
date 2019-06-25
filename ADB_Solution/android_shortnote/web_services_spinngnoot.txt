@@ -1,0 +1,174 @@
+What is DTO and DAO
+DTO is an abbreviation for Data Transfer Object, so it is used to transfer the data between classes and modules of your application. DTO should only contain private fields for your data, getters, setters and constructors. It is not recommended to add business logic methods to such classes, but it is OK to add some util methods.
+
+DAO is an abbreviation for Data Access Object, so it should encapsulate the logic for retrieving, saving and updating data in your data storage (a database, a file-system, whatever). Here is an example how the DAO and DTO interfaces would look like:
+
+interface PersonDTO {
+    String getName();
+    void setName(String name);
+    //.....
+}
+
+interface PersonDAO {
+    PersonDTO findById(long id);
+    void save(PersonDTO person);
+    //.....
+}
+The MVC is a wider pattern. The DTO/DAO would be your model in the MVC pattern. It tells you how to organize the whole application, not just the part responsible for data retrieval.
+
+As for the second question, if you have a small application it is completely OK, however if you want to follow the MVC pattern it would be better to have a separate controller, which would contain the business logic for your frame in a separate class and dispatch messages to this controller from the event handlers. This would separate your business logic from the view.
+
+
+Web Serives Tool Requirement
+
+1> JPA 
+     - Java Persistence API including Spring Data JPA, Spring-ORM-Hibernate
+
+2> Web
+    - full stack web developement with tomcat and Spring MVC
+
+3> DevTools
+     - Spring boot Development tools
+
+#what is spring Boot?
+ - Spring Boot makes it easy to create stand-alone,production-grade spring based Application
+   that you can "just run".
+
+# what is Spring?
+  - Application framework.
+  - programming and configuration model 
+  - Infrastructure support -(connect any database mysql sqlserver mangodb RDBMS jdoDB)
+
+# problem with Spring
+  - huge Framework
+  - multiple setup steps
+  - multiple configuration
+  - multiple build and deploy steps
+
+# Enter Spring boot
+  - Opinionated
+  - convention over configuration
+  - stand alone
+  - production ready
+
+# java 8 SDk
+   download and install in windows or linux
+
+#Spring IDE 
+  - Spring STS / Intellij IDEA
+
+# Create Spring boot project using this site https://start.spring.io/
+   -select the gradle 
+   -select the java 8,7
+   -select spring boot version 2.1.3
+   -group -package name com.sainath
+   -Artifact - Examen
+   -Add Spring Boot Starters and dependencies to your application
+   
+     1> JPA 
+        - Java Persistence API including Spring Data JPA, Spring-ORM-Hibernate
+
+     2> Web
+          - full stack web developement with tomcat and Spring MVC
+
+     3> DevTools
+          - Spring boot Development tools
+
+note:extract open into intellij IDEA
+
+# starting Spring boot
+
+  -sets up default configuration
+  - start Spring Application context
+  - Performs class path Scan
+  - start tomcat server
+
+# what is @springbootApplication annotation
+  - 
+	A single @SpringBootApplication annotation can be used to enable those three features, 
+        that is: @EnableAutoConfiguration : enable Spring Boot's auto-configuration mechanism
+        Many Spring Boot developers like their apps to use auto-configuration, component scan 
+        and be able to define extra configuration on their "application class". A single @SpringBootApplication annotation can be used to enable those three features, that is:
+
+@EnableAutoConfiguration: enable Spring Boot’s auto-configuration mechanism
+@ComponentScan: enable @Component scan on the package where the application is located (see the best practices)
+@Configuration: allow to register extra beans in the context or import additional configuration classes
+
+	
+package com.bcil.RFID;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class RfidApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(RfidApplication.class, args);
+	}
+
+}
+
+
+# My SQL Server locally connection
+ Server type : database engine
+ ServerName: LAPTOP-9QT4J5AN\SQLSERVER
+ Authentication : sql Server Authentication
+ login : sa
+ password: bcilblr
+
+# Problem to connect TCP/IP port is blocked by firewall 
+ solve: 1 go to -SQL Server Configuration Manager
+               Click - Sql Server Services 
+                     - If you see that SQL Server/ SQL Server Browser State is 'stopped'.Right click on SQL Server/SQL Server Browser and click start. 
+                       In some cases above state can stop though TCP connection to port 1433 is assigned.
+
+        2 go to - SQL Server Network Configuration 
+                Click -Protocols for SQLSERVER
+                      -Shared memory - enabled
+                      -Named Pipes   - enabled
+                      -TCP/IP - enabled
+             Note:  allIP TCP/IP =1433 enter 
+             
+#Connection with database configuration
+
+# download lib on command in intellji IDEA
+  Command -gradlew build
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-test/1.5.10.RELEASE/spring-boot-starter-test-1.5.10.RELEASE.pom
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test/1.5.10.RELEASE/spring-boot-test-1.5.10.RELEASE.pom
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test-autoconfigure/1.5.10.RELEASE/spring-boot-test-autoconfigure-1.5.10.RELEASE.pom
+Download https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.3.14.RELEASE/spring-test-4.3.14.RELEASE.pom
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test/1.5.10.RELEASE/spring-boot-test-1.5.10.RELEASE.jar
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-test-autoconfigure/1.5.10.RELEASE/spring-boot-test-autoconfigure-1.5.10.RELEASE.jar
+Download https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-test/1.5.10.RELEASE/spring-boot-starter-test-1.5.10.RELEASE.jar
+Download https://repo.maven.apache.org/maven2/org/springframework/spring-test/4.3.14.RELEASE/spring-test-4.3.14.RELEASE.jar
+
+
+# Resource Folder -application.properties setting 
+
+spring.datasource.url=jdbc:sqlserver://localhost:1433;instanceName=LAPTOP-9QT4J5AN\SQLSERVER;databaseName=Rfid_db
+#spring.datasource.url=jdbc:sqlserver://localhost;databaseName=Rfid_db
+spring.datasource.username=sa
+spring.datasource.password=bcilblr
+spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+spring.jpa.show-sql=true
+spring.jpa.hibernate.dialect=org.hibernate.dialect.SQLServer2012Dialect
+spring.jpa.hibernate.ddl-auto = update
+
+#Run the web services using below commmand
+ - gradlew bootrun (windows os)
+ - ./gradlew bootrun (linux os)
+
+
+# build web api jar using below command
+  - gradlew clean
+  - gradlew build
+  run the api - gradlew bootrun
+  jar file= build->libs->Rfid-0.0.1-SHAPSHOT.jar
+  run command line jar file
+  java -jar Rfid-0.0.1-SHAPSHOT.jar
+
+# Domain
+  User class
+
+   #Entity - hibernate will scan that package 

@@ -1,0 +1,9 @@
+Steps I followed 1) Execute the command adb nodaemon server in command prompt Output at command prompt will be: The following error occurred cannot bind 'tcp:5037' The original ADB server port binding failed
+
+2) Enter the following command query which using port 5037 netstat -ano | findstr "5037" The following information will be prompted on command prompt: TCP 127.0.0.1:5037 0.0.0.0:0 LISTENING 9288
+
+3) View the task manager, close all adb.exe
+
+4) Restart eclipse or other IDE
+
+The above steps worked for me.

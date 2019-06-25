@@ -1,0 +1,230 @@
+What is Sql
+SQL is a standard language for accessing and manipulating databases.
+SQL stands for Structured Query Language
+SQL lets you access and manipulate databases
+
+What Can SQL do?
+SQL can execute queries against a database
+SQL can retrieve data from a database
+SQL can insert records in a database
+SQL can update records in a database
+SQL can delete records from a database
+SQL can create new databases
+SQL can create new tables in a database
+SQL can create stored procedures in a database
+SQL can create views in a database
+SQL can set permissions on tables, procedures, and views
+
+what is RDBMS
+RDBMS. Stands for "Relational Database Management System." An RDBMS is a DBMS designed specifically for relational databases. ... A relational database refers to a database that stores data in a structured format, using rows and columns. 
+This makes it easy to locate and access specific values within the database.
+The data in RDBMS is stored in database objects called tables. A table is a collection of related data entries and it consists of columns and rows.
+Look at the "Customers" table:
+
+Some of The Most Important SQL Commands
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+The SQL CREATE TABLE Statement
+The CREATE TABLE statement is used to create a new table in a database.
+
+Syntax
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    column3 datatype,
+   ....
+);
+
+Example :: create table Customer(ID int not null,Name varchar(30), Age int not null ,Address varchar(45), Salary int );
+
+The SQL SELECT Statement
+The SELECT statement is used to select data from a database.
+The data returned is stored in a result table, called the result-set.
+SELECT Syntax
+SELECT column1, column2, ...
+FROM table_name;
+Exam  : Select custName,custAddress from Customer;
+SELECT Syntax : select * from table_Name;
+exam Select *from Customer;
+
+Before starting SQL, relational databases have several point that are important to keep in mind.
+RDBMS stands for Relational Database Management System.
+Data Integrity : Store data only once and avoiding data duplication.
+SQL Constraints : Constraints are the rules which are apply to table columns to store valid data and prevents the user to storing/entering invalid data into table columns.
+Better security : Assign grant or privilege to a individual User. Using this grant user can store confidential data into table by using username or password.
+Database Normalization : Database normalization is the process to store database data very efficiently. No need to store same data more then one time and reduce the Data redundancy.
+Different types of relationships : One to one, One to many, Many to many
+One to one relationship : merging for two tables.
+One to many relationship : create a foreign key from an parent table to the child table.
+Many to many relationship : create a new relation table.
+
+SQL Process Flow
+When you execute SQL query come to a SQL Server. SQL Server work is managing database, load balancing, transaction management etc. SQL server call to a actual physical database table and return the result.
+This process is take small bit of time and depend of query and SQL server load.
+
+The SQL WHERE Clause
+The WHERE clause is used to filter records.
+The WHERE clause is used to extract only those records that fulfill a specified condition.
+WHERE Syntax
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+Exam:select * from Customer where  mobileNo ='9689340410';
+Note: The WHERE clause is not only used in SELECT statement, it is also used in UPDATE, DELETE statement, etc.!
+
+
+DDL And DML
+Data Definition Language: To create/modify data structures (tables) that will hold the data.
+Data Manipulation Language: To create/modify/retrieve the actual data.
+
+Most used commands:
+DDL: Create, Alter, Drop, Truncate, Rename
+DML: Select, Insert, Update, Delete, Merge
+
+The SQL AlTER Command
+ALTER TABLE statement in SQL Server (Transact-SQL) to add a column, modify a column, drop a column, rename a column or rename a table with syntax and examples.
+
+Description
+The SQL Server (Transact-SQL) ALTER TABLE statement is used to add, modify, or drop columns in a table.
+
+Add column in table
+You can use the ALTER TABLE statement in SQL Server to add a column to a table.
+
+The syntax to add a column in a table in SQL Server
+ALTER TABLE table_name
+  ADD column_name column_definition;
+Exam: Alter Table Customer add mobileNo varchar(10);
+
+Data Definition Language (DDL) Statements
+Data definition statement are use to define the database structure or table.
+
+Statement	Description
+CREATE	     Create new database/table.
+ALTER	     Modifies the structure of database/table.
+DROP	     Deletes a database/table.
+TRUNCATE     Remove all table records including allocated table spaces.
+RENAME	     Rename the database/table.
+
+Data Manipulation Language (DML) Statements
+Data manipulation statement are use for managing data within table object.
+
+Statement	Description
+SELECT	        Retrieve data from the table.
+INSERT	        Insert data into a table.
+UPDATE	        Updates existing data with new data within a table.
+DELETE	        Deletes the records rows from the table.
+MERGE	        MERGE (also called UPSERT) statements to INSERT new records or UPDATE existing records depending on condition matches or not.
+LOCK TABLE	LOCK TABLE statement to lock one or more tables in a specified mode. Table access denied to a other users for the duration of your table operation.
+CALL
+EXPLAIN PLAN	Statements are supported in PL/SQL only for executed dynamically. CALL a PL/SQL program or EXPLAIN PATH access the data path.
+
+
+UPDATE Statement
+
+The SQL Server (Transact-SQL) UPDATE statement is used to update existing records in a table in a SQL Server database. There are 3 syntaxes for the UPDATE statement depending on whether you are performing a traditional update or updating one table with data from another table.
+
+Syntax
+The syntax for the UPDATE statement when updating one table in SQL Server (Transact-SQL) is:
+
+UPDATE table SET column1 = expression1 where ColumnID =expression1
+
+Example :: update Customer Set Address ='pune' where ID =1;
+
+UPDATE table
+SET column1 = expression1,
+    column2 = expression2,
+    ...
+[WHERE conditions];
+OR
+
+The syntax for the UPDATE statement when updating one table with data from another table in SQL Server (Transact-SQL) is:
+UPDATE table1
+SET column1 = (SELECT expression1
+               FROM table2
+               WHERE conditions)
+[WHERE conditions];
+OR
+The syntax for the SQL Server UPDATE statement when updating one table with data from another table is:
+UPDATE table1
+SET table1.column = table2.expression1
+FROM table1
+INNER JOIN table2
+ON (table1.column1 = table2.column1)
+[WHERE conditions];
+
+Example
+update Customer set Address='pune' where ID=2;
+
+
+The SQL DELETE Statement
+The DELETE statement is used to delete existing records in a table.
+
+DELETE Syntax
+DELETE FROM table_name WHERE condition;
+
+DELETE EXAMPLE
+delete from Customer where ID=3;
+Note: Be careful when deleting records in a table! Notice the WHERE clause in the DELETE statement. The WHERE clause specifies which record(s) should be deleted.
+ If you omit the WHERE clause, all records in the table will be deleted!
+
+What is Main Difference between Delete and Drop 
+DROP
+Drop command is used to delete the entire table from the database including records.
+Syntax:
+drop table tablename;
+Query:
+drop table employees;
+We can also delete views,index and so on.
+
+DELETE
+Delete is a DATA MANIPULATION LANGUAGE command.We can delete a specific records from the table using the delete command.
+Syntax:
+delete from tablename where columnname=data;
+Query:
+delete from employees where employee_id=100;
+
+The difference between TRUNCATE , DELETE and DROP is one of the most common interview question. 
+ 
+TRUNCATE
+TRUNCATE is a DDL command
+TRUNCATE is executed using a table lock and whole table is locked for remove all records.
+We cannot use Where clause with TRUNCATE.
+TRUNCATE removes all rows from a table.
+Minimal logging in transaction log, so it is performance wise faster.
+TRUNCATE TABLE removes the data by deallocating the data pages used to store the table data and records only the page deallocations in the transaction log.
+Identify column is reset to its seed value if table contains any identity column.
+To use Truncate on a table you need at least ALTER permission on the table.
+Truncate uses the less transaction space than Delete statement.
+Truncate cannot be used with indexed views.
+
+DELETE
+DELETE is a DML command.
+DELETE is executed using a row lock, each row in the table is locked for deletion.
+We can use where clause with DELETE to filter & delete specific records.
+The DELETE command is used to remove rows from a table based on WHERE condition.
+It maintain the log, so it slower than TRUNCATE.
+The DELETE statement removes rows one at a time and records an entry in the transaction log for each deleted row.
+Identity of column keep DELETE retain the identity.
+To use Delete you need DELETE permission on the table.
+Delete uses the more transaction space than Truncate statement.
+Delete can be used with indexed views.
+
+DROP
+The DROP command removes a table from the database.
+All the tables' rows, indexes and privileges will also be removed.
+No DML triggers will be fired.
+The operation cannot be rolled back.
+DROP and TRUNCATE are DDL commands, whereas DELETE is a DML command.
+DELETE operations can be rolled back (undone), while DROP and TRUNCATE operations cannot be rolled back.
+
+

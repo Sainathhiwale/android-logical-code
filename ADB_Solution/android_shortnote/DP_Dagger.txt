@@ -1,0 +1,55 @@
+Dagger2
+
+What is DI
+ans: when we are planing build large application (Dependency injection )Dagger and Butterknife
+   1>readable
+   2>expendable
+   3>maintainable
+   4>easy to test
+what are annotations?
+annotation in java are used to provide additional information.annotation can be associated with
+classes method field and even other annotations.they can also be accessed during the runtime.
+
+what are annotation processors?
+annotation processors generate the code during the compile time.
+Daggers 2 does the code generation at the compile time using annotation processors.
+
+Daggers 2 annotations
+1>@Provides
+2>Module
+3>@Inject
+4>@Component
+
+Singleton annotation
+This annotation tells dagger to  create only one instance of the object(dependency)
+
+@Singleton annotation
+
+@Module
+public class MemberDataModule{
+@Provides
+@Singleton
+MemberDataManager provideMemberDataManager(){
+
+return new MemberDataManager ;
+
+}
+
+}
+
+@Singleton Theoretically a  singleton candidate must satisfy these requirements: 
+• That object has concurrent access form other parts of the application during the application lifetime. 
+• Access to the object will be requested from multiple parts of the system. 
+• There can be only one object.
+@Singleton
+• @Singleton annotation if for creating singletons, that’s true. But it’s not the exact singleton we create in java.
+@Singleton
+• In dagger 2 @Singleton makes your class a single instance in your dependencies graph (it means that this instance will be "singleton" as long as Component object exists).(We will learn about components later in this course
+@Singleton
+• Every time , you’re injecting @Singleton annotated class (with @Inject annotation)It will be the same instance as long as you inject it from same Component.
+
+There are some arguments about dagger 2 singletons. I added this note to make it much clearer for you.
+• @Singleton annotation if for creating singletons, that’s true. But it’s not the exact singleton we create in java. 
+• In dagger 2 @Singleton makes your class a single instance in your dependencies graph (it means that this instance will be "singleton" as long as Component object exists).(We will learn about components later in this course)
+• Every time, you’re injecting @Singleton   annotated class (with @Inject annotation)
+ it will be the same instance as long as you inject it from the same Component. 

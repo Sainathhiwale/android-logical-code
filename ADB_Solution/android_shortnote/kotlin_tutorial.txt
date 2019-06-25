@@ -1,0 +1,106 @@
+kotlin basic
+JVM language
+ -it needs java virtual machine(JVM) to execute its bytecode
+ -Support to avoid NullPointerException
+ -supports Immutability
+ -object oriented language
+ -functional
+  -yes can pass a function as parameter to another function
+  - or a function can return another function
+ -Less Ceremony
+  - no more boilerplates
+  - less code, more results
+  -code looks clean
+# types of apps that can be built using kotlin
+1>Server-side apps (Spring boot vert.x jsf,ktor)
+2>Android Development
+3>Web Development (kotlin/js)
+4>Desktop application(javaFX ,TornadoFx)
+5>Native Development(kotlin/Native library)
+
+Hello world program
+
+fun main(args:Array<String>):Unit
+{
+println("hello world");
+}
+args as array of string
+:Uint(void)
+how to return value in kotlin we are using
+:Int
+:String
+
+print() method statement is use to display statement/not need to put the semicolon after print
+print statements
+print("hello")
+new line 
+println("world")
+
+#How does hello world program works
+does kotlin create a class internally
+-yes 
+ -the kotlin compiler internally create a class file which is loaded into memory for execution in runtime
+ 
+basic syntax
+//inline comment
+/**/ multiple comment for documents
+
+define the string
+syntax var varible_name value
+
+var myString ="hello world" //mutable string in var type
+var myNumber =10;
+var mydecimal =1.0;
+var mystring:String //
+mystring ="hello world"
+print(myString);
+
+val str ="india is my country"
+str ="all indian is my brothe sister except one"// immutable constant we can not changes the value
+
+
+Function program
+
+fun main(args:Array<String>)
+{
+  var str:String
+  str="sainath hiwale"
+  display(str); //calling the function in main method 
+}
+fun display(str:String){  //this is function(method) with parameter return the string value
+print(str)
+}
+
+Call Function(method )inside the class by object 
+
+fun main(args:Array<String>){
+   var name:String
+   name ="sainath hiwale"
+   var personObj = Person();
+   personObj.display(name)
+}
+class Person{
+ fun display(name:String){
+  print(name);
+}
+}
+
+we have create the class person inside we decleared the funtion(method) how call that function which is
+created inside the Preson class by using the object
+how to create the object in kotlin to call function inside the class
+var presobObj = Preson(); //create the object to call function
+presonObj.display(name);//call the method using class object instance
+
+
+STRING INTERPOLATION EXAMPLE
+
+fun main(args:Array<String>){
+   var presonObj = Preson();
+   presonObj.name="sainath hiwale"
+   print("the name of the person is${presonObj.name}");
+}
+class Preson{
+var name:String=""
+}
+
+String interpolation indicate with doller with curlyb ${} compiler will understand

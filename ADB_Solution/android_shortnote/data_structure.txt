@@ -1,0 +1,8 @@
+#what is Data structure?
+ -> Data Structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently.
+ ->Data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
+
+ -> Data structure means storing the data into memory in sequence manner and access modified efficiently way.
+
+Abstract Data type
+

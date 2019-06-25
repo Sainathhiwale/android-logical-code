@@ -1,0 +1,21 @@
+https://medium.com/mindorks/mastering-android-service-of-2018-a4a1df5ed5a6
+https://blog.aritraroy.in/50-ultimate-resources-to-master-android-development-15165d6bc376
+
+1> Butterknife Zelenzy
+Most useful plug-in for Android Studio/IDEA that allows one-click creation of Butterknife view injections. In addition to injections this can even generate click methods for you!
+
+2>ADBWIFI
+It is a Android Studio plugin for debugging your android app over Wi-Fi. Neat i say!
+
+3>Key Promoter
+Shows to user how easy he can make same action using only keyboard(menus and toolbar button mouse clicks initiates shortcut display). It will alert you when ever you click on the toolbar. Pretty useful if you want to speed up your development.
+
+4>Android Material Design Icon Generator
+Android Studio & IntelliJ Plugin for Material Design Icon. This plugin help you to set material design icon in your app resources. This plugin has saved my hours of importing assets into my app. This also provides SVG’s in XML format if you wish to use them in your application.
+
+5> Mirror
+Mirror compiles incrementally and only sends deltas to the devices enabling much faster UI changes rather than rebuilding and reinstalling the full APK.
+
+6> Android Material Design Icon Generator
+
+- this plugin helps you to set Material Design icons to your Android project. After installation you can use a shortcut: cmd + shift + m to generate an icon (by default)

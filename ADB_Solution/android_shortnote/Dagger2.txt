@@ -1,0 +1,55 @@
+Note: Dependency Injection itself is just design pattern ,it's not
+library.
+note : dagger @inject annation can not be apply for private member
+       ex @Inject Car car; // not allowed
+what is Dependency
+Dependency just means that one class uses another class
+Example
+1>
+A class  B class
+
+A class  depends on B class (Dependent)
+B class is dependency of class A (Dependency)
+
+2>
+Image Loader  and Http Client;
+ 
+Image Loader class is depends on class Http client(Dependent)
+Http client class is dependency of class Image Loader(Dependency)
+
+3>
+Recyclerview  And Adapter
+Recyclerview class is depends on class Adapter(Dependent)
+Adapter class is dependency of class Recylcerview(Dependency)
+
+@Inject
+   Field Injection we can apply for activity and fragment
+
+  Example
+  @Component
+   public interface CarComponent{
+  // @Inject Car car;
+
+   void inject(MainActivity mainActivity);
+}
+ MainActivity call
+  public class MainActivity extends AppCompatActivity{
+  @Inject Car car;
+  Oncreate(Bundle saveInstance){
+   super(saveInstance)
+   setContentViw(R.layout.main_activity)
+   CarComponent carComponent = DaggerCarComponent.create();
+   //car = carComponent.getCar();
+   car.drive();
+  
+}
+}
+Limitations of Dagger :
+1>Dagger does not inject fields automatically.
+2>It cannot inject private fields. ex private Car car;
+3>If you want to use field injection you have to define a method in your @Component annotated interface which takes the instance of the class into which you want to inject the member variable.
+
+
+
+
+

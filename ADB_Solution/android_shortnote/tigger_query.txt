@@ -1,0 +1,15 @@
+createTRIGGER [dbo].[InventoryT]
+ON [dbo].[scan_tag]
+AFTER UPDATE,INSERT
+AS 
+BEGIN
+    INSERT INTO Flipkart.dbo.Inventory(
+        Tag_ID
+               
+        )
+    SELECT 
+        i.tag_id     
+       
+    FROM inserted i
+   
+END;

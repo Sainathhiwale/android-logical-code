@@ -1,0 +1,400 @@
+Note Making Application using Sqlite vs Room : Part 2— Using Room Library
+
+This post is part 2 of the tutorial series Note Making Application using Sqlite vs Room. 
+In part 1 we saw how to create a note making application using Sqlite. 
+I would recommend you to read the part 1 of the tutorial before diving in this post since we will be reusing a lot of code from the previous tutorial.
+
+Alright let’s talk about Room now , so what is Room ?
+
+Room is an android library provided by Google to handle data persistence in an easy way.
+
+But easy in what way ?
+
+As we saw in part1 of the tutorial for creating database and table using sqlite we had to define a lot of constants like KEY_ID,KEY_TITLE etc. Plus to perform operations on the data we had to use cursors and then use cursor methods to get our results. And similar to these points there are many shortcomings and excessive boilerplate code in Sqlite.
+
+But how does Room solve the same problem ?
+
+Room solves the problem by
+
+Using Annotations to reduce the boilerplate code
+Second separating the creation of the table structure and the operations to be performed on the table by the help of Dao class. Dao stands for DATA ACCESS OBJECT.
+If you want a more technical definition this is what the developers page says
+
+The Room persistence library provides an abstraction layer over SQLite to allow fluent database access while harnessing the full power of SQLite.
+Ok we get some idea but to get a thorough understanding of how it all works we need to dive into some code.
+
+After you are all setup now we will start to see the difference between the two approaches.
+
+1.Adding Dependencies
+Since Room is an external library and not built in the Android Framework like Sqlite we need to add a few dependencies.
+
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "in.androidmate.anujgupta.notes_room"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    implementation "android.arch.persistence.room:rxjava2:1.0.0"
+
+    //RxJava
+
+    compile "io.reactivex.rxjava2:rxjava:2.0.6"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:cardview-v7:26.+'
+    compile 'com.android.support:design:26.+'
+
+    //ButterKnife
+
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}
+
+2. We need to modify our model Note.java
+
+After adding the room dependencies we can use the annotations provided specifically for room.
+ Using the annotation @Entity we can use our model as the structure for our table.
+ Modify the Note.java file as follows
+
+@Entity(tableName = "notes")
+public class Note {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    @ColumnInfo(name = "title")
+    private String title;
+
+    @ColumnInfo(name = "note")
+    private String note;
+
+    public Note(){
+
+    }
+
+    public Note(int id,String title,String note){
+        this.id = id;
+        this.title = title;
+        this.note = note;
+    }
+
+    public Note(String title,String note){
+        this.title = title;
+        this.note = note;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+}
+
+@PrimaryKey is used to specify which column to use as primary key and 
+@ColumnInfo is used to specify the column name.
+
+3. Next we need to create a java class called NoteDao.jao in the database package
+
+In NoteDao.java we are going to define the operations we want to perform on the database table. Modify the NoteDao file as follows
+
+@Dao
+public interface NoteDao {
+
+    @Query("SELECT * FROM notes")
+    Maybe<List<Note>> getAll();
+
+    @Insert
+    void insertAll(Note... notes);
+
+}
+
+4. Creating the database and getting an instance of the database
+
+We need to create an abstract class called AppDatabase.java which extends RoomDatabase class. 
+We are going to use @Database annotation to specify the entities we want to add in our database.
+
+@Database(entities = {Note.class},version = 1)
+public abstract class AppDatabase extends RoomDatabase {
+
+    private static AppDatabase INSTANCE;
+
+    public abstract NoteDao noteDao();
+
+    public static AppDatabase getAppDatabase(Context context) {
+        if (INSTANCE == null) {
+            INSTANCE =
+                    Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "database-name")
+                            .build();
+        }
+        return INSTANCE;
+    }
+
+    public static void destroyInstance() {
+        INSTANCE = null;
+    }
+}
+
+4. Using the database instance to perform operations
+
+We need to create a java class called LocalCacheManager. This class is going to get the database instance, use the dao operations and return the result to out activity/fragment.
+public class LocalCacheManager {
+    private Context context;
+    private static LocalCacheManager _instance;
+    private AppDatabase db;
+
+    public static LocalCacheManager getInstance(Context context) {
+        if (_instance == null) {
+            _instance = new LocalCacheManager(context);
+        }
+        return _instance;
+    }
+
+    public LocalCacheManager(Context context) {
+        this.context = context;
+        db = AppDatabase.getAppDatabase(context);
+    }
+
+    public void getNotes(final MainViewInterface mainViewInterface) {
+        db.noteDao().getAll().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<List<Note>>() {
+            @Override
+            public void accept(List<Note> notes) throws Exception {
+                mainViewInterface.onNotesLoaded(notes);
+            }
+        });
+    }
+
+    public void addNotes(final AddNoteViewInterface addNoteViewInterface, final String title, final String note_text) {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                Note note = new Note(title, note_text);
+                db.noteDao().insertAll(note);
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onComplete() {
+                addNoteViewInterface.onNoteAdded();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                addNoteViewInterface.onDataNotAvailable();
+            }
+        });
+    }
+
+
+}
+
+
+if you are receiving some errors its okay because we haven’t yet created the MainViewInterface and AddNoteViewInterface.
+
+5. Using LocalCacheManager in our Activities
+
+Create the following interface called MainViewInterface and AddNoteViewInteface as follows
+
+public interface MainViewInterface {
+
+    void onNotesLoaded(List<Note> notes);
+
+    void onNoteAdded();
+
+    void onDataNotAvailable();
+
+}
+
+public interface AddNoteViewInterface {
+
+    void onNoteAdded();
+
+    void onDataNotAvailable();
+}
+
+Modify the MainActivity.java and AddNoteActivity.java as follows
+
+
+public class MainActivity extends AppCompatActivity implements MainViewInterface {
+
+    @BindView(R.id.rvNotes)
+    RecyclerView rvNotes;
+
+    RecyclerView.Adapter adapter;
+    List<Note> notesList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        initViews();
+        loadNotes();
+
+    }
+
+    private void initViews() {
+
+        rvNotes.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void loadNotes(){
+
+        //Call Method to get Notes
+        LocalCacheManager.getInstance(this).getNotes(this);
+
+
+    }
+
+    @OnClick(R.id.fabAddNote)
+    public void addNote(){
+        Intent i = new Intent(MainActivity.this,AddNoteActivity.class);
+        startActivity(i);
+    }
+
+    @Override
+    public void onNotesLoaded(List<Note> notes) {
+        notesList = notes;
+
+        if(notesList.size() == 0){
+            onDataNotAvailable();
+        }else {
+            adapter = new NotesAdapter(this, notes);
+            rvNotes.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onNoteAdded() {
+        Toast.makeText(this,"Note Added",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDataNotAvailable() {
+        Toast.makeText(this,"No Notes Yet",Toast.LENGTH_SHORT).show();
+    }
+}
+
+
+public class AddNoteActivity extends AppCompatActivity implements AddNoteViewInterface {
+
+    @BindView(R.id.etTitle)
+    EditText etTitle;
+
+    @BindView(R.id.etNote)
+    EditText etNote;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_note);
+        ButterKnife.bind(this);
+    }
+
+
+    private void saveNote(){
+
+        String title = etTitle.getText().toString();
+        String note_text = etNote.getText().toString();
+
+        if(title.equals("") || note_text.equals("")){
+            showToast("Please fill all the fields before saving");
+        }else{
+            //Call Method to add note
+
+            LocalCacheManager.getInstance(this).addNotes(this, title,note_text);
+        }
+
+    }
+
+
+    private void showToast(String msg){
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add_note,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.action_save){
+            saveNote();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onNoteAdded() {
+        Toast.makeText(this,"Note Added",Toast.LENGTH_SHORT).show();
+
+        Intent i = new Intent(AddNoteActivity.this,MainActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
+    }
+
+    @Override
+    public void onDataNotAvailable() {
+        Toast.makeText(this,"Could not add note",Toast.LENGTH_SHORT).show();
+    }
+}
+
+https://github.com/aj019/Notes-Room
+
+
+

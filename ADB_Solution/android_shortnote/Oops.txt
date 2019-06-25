@@ -1,0 +1,368 @@
+what is interface
+- interface which is decleared with interface keyword and we can not create object of interface they are just a 
+  blueprint of class.
+  interface is abstract type which is declared with interface keyword.it is blueprint of class.
+  we can not create the object of interface but we can create reference of interface
+Rules of Interface
+         * You cannot create object of interface. They are just a blueprint of a class.
+         * Use implements keyword
+         * They can only contain abstract methods.
+ 
+        1. For Methods
+           * They are public and abstract
+           * No method body. You cannot write code within your method.
+
+        2. For Variables
+          * Avoid using field variables
+          * But when used they are constants. Their values cannot be changed once defined.
+          * They are public, static and final
+ 
+Example of inherface
+
+interface A{
+   void run();
+
+}
+interface B{
+void eat();
+}
+
+public class Main implement A,B{
+public static void main(String[]args)
+{
+   
+}
+
+@override
+public void run(){
+System.out.println("run is calling");
+}
+@override
+public void eat(){
+System.out.println("he is eating something");
+}
+}
+
+why we use interface and abstract method(realtime ex)
+-Samsung company requested dell company to provide support for samsumg mouse to dell loptops
+Dell agreed on that and provide the interface to samsumg samsumg implement this interface and override all methods and
+implement in the class.
+
+ 
+MultipleInheritance Example 
+
+interface A{
+void run();
+
+}
+interface B{
+void eat();
+}
+interface C{
+void dance();
+}
+interface D{
+void draw();
+}
+class Main Implement A,B,C,D{
+
+public static void main(String[]args){
+   Main obj = new Main();
+   obj.run();
+   obj.dance();
+   obj.eat();
+   obj.draw();
+}
+@override
+public void run()
+{
+System.out.println("he is running");
+}
+
+@override
+public void eat(){
+System.out.println("he is eating something");
+}
+@override
+public void dance(){
+System.out.println("she is danceing");
+}
+@override
+public void draw(){
+System.out.println("he is eating something");
+}
+}
+
+Java 8 version having some changes in  Interface 
+Default keyword is added using this default we can create the concreate method in interfeace before that
+it won't be allowed
+
+Example of default key word with concreate method
+
+interface A{
+ //concreate method we can create in interface with help of (default) KeyWords
+   public Default void run(){
+   System.out.println("he is running at home");
+ }
+   public void eat(); // abstract method just declareation no implementation.
+                   // this method is override in subclasses
+}
+   public class Default Interface implement A{
+   public static void main(String [] args)
+{
+   A obj ; // reference of interface
+   obj = new DefaultInterface (); // parent class reference -->child class object
+   obj.run();
+   obj.eat()
+}
+  @override
+  public void eat(){
+  System.out.println("he is eating a mango");
+    } 
+ 
+}
+
+Abstract class 
+
+what is abstract class ?
+- Abstract class which is declared with abstract keyword.we can not create the object of abstract classes.
+  but we can create reference of abstract classes.
+note: 
+      - in abstract class we can not create the object of abstract classes.
+      - in abstract classes we can creare the reference of abstract classes.
+      - in abstract classes we can create abstract method and concreate method(not abstract method).
+      - abstract class start with abstract keyword and abstract method also
+      - abstract class extending to another or subclass of abstract with help of keyword(extends)
+Rules for abstract keyword:
+ *       1. abstract class:
+ *           * A class that is declared abstract
+ *           * You cannot create object of abstract class
+ *           * It may or may not contain abstract methods
+ *
+ *       2. abstract method:
+ *           * No method body. You cannot write code in abstract method.
+ *           * It is mandatory to override the abstract method in child class.
+
+
+Abstract class example
+
+abstract class Animal{
+ //this is concreate method
+public void eat(){
+System.out.println("i am eating apple");
+}
+abstract public void run();
+}
+
+class Dog extends Animal{
+
+ @override
+ public void run(){
+  System.out.println("he is going to pune without me hhaha");
+}
+@override
+public void eat(){
+System.out.println("he is eating something");
+}
+}
+
+public class Main {
+public static void main(String []agrs)
+{
+   //new Animal();// Not Allowed. Cannot create objects of abstract class.
+   Animal animal; // Allowed. You can create reference of abstract class.
+   animal = new Dog(); // // Parent class reference --> Child class object (Dog)
+   animal.run();
+   animal.eat();
+}
+}
+
+OOPs Concept in Java
+  Abstraction
+  Encapsulation
+  Ploymorphism
+  Inheritance
+  Class
+  Object
+  Methods
+  
+ Object oriented programming provide a great flexibility, reusability, modularity and security to an application.
+
+Data hiding is a very powerful feature. It provides security to various sensitive methods and variables.
+
+Abstraction provides a way to hide the less essential properties so as to reduce complexity and increase efficiency.
+
+Encapsulation is an information hiding and securing mechanism. It helps in restricting the access of data from the outside entities it means only the methods in a class can access its member variables. Encapsulation reduces the system complexity and increases robustness.
+
+Polymorphism is a way to have more than one form of a method. In polymorphism, we use the method overloading and method overriding techniques.
+
+Inheritance is used to reduce the code and reuse the already available code. Here we extend a base class to a derived class. The derived class then inherits the properties of its base class.
+
+Class is a very essential entity in java. Every program in java has a class. Class is like a blueprint of an object. A class contains member variables and methods.
+
+Object is soul of object oriented programming. An object is an instance of its class. Object is used to access the methods and variables in a class.
+
+Methods are the operations that an object can perform. Methods define the behavior of an object.
+
+
+
+Class 
+
+what is class ?
+- class is nothing but collection of group of object.it is logical entity
+- class is contains method interface, varible and object.
+
+
+In general, a class can have the following components to act as a template:
+1. Modifiers: A class can be public or default.
+2. Class name: By convention, a class name should begin with a capital letter and subsequent characters lowercased(for example Student). If a name consists of multiple words, the first letter of each word should be uppercased( for example CollegerStudent).
+2. Body: Every class's body is enclosed in a pair of left and right braces. In the body,  a class can contain:
+
+Fields: Fields are the variables that provide the state/properties of the class and its object. It may be a Local variable, Instance variable or Static variable.
+Constructor: Constructors are used to initializing the values of variables and new objects. A constructor can be divided into two types such as Default constructor and User-defined constructor.
+Methods: methods are used to implement the actions or behavior of the class and its object. It may be an Instance method or a Static method.
+Blocks: blocks are mostly used to change the default values of variables. It may be an instance block or static block.
+Interface: It is used to achieve the multiple inheritances in Java. 
+Syntax to declare a class
+modifiers_name class class_name {
+    // Class body.
+         Variables;
+         constructors;
+         methods;
+         Instance blocks
+         Static blocks
+    }
+where modifier_name can be only public or default. If you declare a class as public then it can be accessed from anywhere but if you do not declare the class as public then it will be considered as default and will be accessed within the same package only. 
+Note: Object is the instance of a class.
+
+Note : All classes have at least one constructor. If a class does not explicitly declare any, the Java compiler automatically provides a no-argument constructor, also called the default constructor. This default constructor calls the class parent’s no-argument constructor (as it contain only one statement i.e super();), or the Object class constructor if the class has no other parent (as Object class is parent of all classes either directly or indirectly).
+
+Example of class
+
+public class Test{
+int salary ;
+String name;  // instance varible we can not access instance varible inside the main method 
+String adddress; // we need the class object to access instance varible
+
+public static void main(String []args)
+{
+  Test obj = new Test(); // create the class object to call instance varible.
+  System.out.println(obj.salary=40,000);
+  System.out.println(obj.name ="sainath");
+  System.out.println(obj.address ="Aurangabad in maharashtra");
+}
+}
+
+note: default value of integer is 0 and string is null
+      System.out.println(obj.salary);//output 0 default value of integer
+       System.out.println(obj.name);// output null default value of string
+
+
+Object
+
+ defination
+  An object is any real-world things that have properties and actions. In other words, an entity that has state and behavior is known  as an object. Here, State represents the properties and Behaviour represents the actions or functionality
+
+An object has three characteristics:
+1. State: It is represented by the instance variable/attribute of an object. It also represents the properties of objects. 
+2. Behavior: It is represented by methods in Java. It represents functionality or actions. 
+3. Identity: It represents the unique name of an object.
+
+Example Preson
+ 
+   preson(object)                            
+        state/properties                   Representation of state in java
+                                             
+        black hair                          haircolor ="black";                      
+        black eyes                          eysColor ="black"; 
+        white skin                          skincolor ="white";
+        6 feet tall                         height = 6; or "6";
+        50 kg                               weight = 56 or "56";
+
+        Behavior/Action                    Representation of Behavior in java
+
+        eat                                eat();
+        sleep                              sleep();
+        walk                               walk();
+        play                               play();
+        study                              study();
+
+Realtime example of class 
+Realtime example 2:
+Consider two objects one boy and one girl. The boy has some properties like hairColor="black", eyeColor="black", skinColor="Fair", height="5.10 inch", weight="65 kg" and actions are read(), play(), sleep(), walk(). 
+
+Now, The girl has some properties like hairColor="Brown", eyeColor="brown", skinColor="milky white", height="5.4 inch", weight="50 kg" and actions are read(), play(), sleep(), walk(). but the type of both is the same. i,e Person. So the class name is 'Person'.
+
+
+Encapsulation
+
+Web Push SendPulseScientech Easy
+Home
+About Us
+Contact
+Contact Us
+Privacy Policy
+Sitemap
+Disclaimer
+Scientech Easy
+
+ 
+HOMECORE JAVASTRINGCOLLECTIONSSELENIUMINTERVIEW
+GENERAL SCIENCEGK
+
+ 
+Custom Search
+
+Home / Core Java / Encapsulation in Java | Real Time Examples & Advantages
+Encapsulation in Java | Real Time Examples & Advantages
+by Scientech Easy on March 26, 2019 in Core Java
+
+ 
+ENCAPSULATION IN JAVA
+
+ Programming Example 
+
+class Employee{
+public int salary;
+public static void main(String [] args)
+{
+  Employee emp1 = new Employee();
+  Employee emp2 = new Employee();
+  emp1.salary = 5000;
+  emp2.salary =10000;
+   System.out.println("emp1.salary Rs." + emp1.salary);     // prints 5000
+    System.out.println("emp2.salary Rs." + emp2.salary);     // prints 10000
+}
+}
+
+salary is an instance variable which gives the property of salary paid to an Employee object. The salary of Employee emp1 is assigned as 5000. This assignment is done by calling the emp1 object with instance variable salary as emp1.salary. When called, both emp1 and salary are binded together (known as data binding). When binded they occupy one location in the memory. Similarly emp2.salary is assigned as 6000 and this emp2.salary occupies different location in memory. One location is not known to another even though both objects emp1 and emp2 belong to the same class and there is only one instance variable. That is, emp1 does not know the salary of emp2 and likewise emp2 is not aware of emp1 salary. In other way, they are hidden from each other and is known as (data hiding.) Data hiding is possible due to data binding, other way impossible. This is known as encapsulation. emp1.salary is encapsulated from emp2.salary and similarly emp2.salary is encapsulated from emp1.salary. The advantage of encapsulation is emp1 cannot alter the emp2 salary and vice versa. Other classes can make use of emp1 salary of 5000 without knowing how the salary is assigned (or implemented). Other way, the salary assignment information is abstracted for other classes, but still can make use of emp1 salary. The advantage of Java encapsulation is one instance variable can be given different values, of course, calling with different objects.
+
+Some classes would like to assign salary to emp1 object and they may give any amount of salary. To control this, public int salary can be made as private int salary. Being, private, other classes cannot access directly. For other classes access, a separate class should be made with setter and getter methods. Some people also call this as encapsulation. This type of encapsulation and how to use private variables and public methods is illustrated in Public methods and Private Variables.
+The process of binding data and corresponding methods (behavior) together into a single unit is called encapsulation in Java. In other words, encapsulation is a programming technique that binds the class members (variables and methods) together and prevents them from being accessed by other classes, thereby we can keep variables and methods safes from outside interference and misuse.
+
+Every Java class is an example of encapsulation because we write everything within the class only that binds variables and methods together and hides their complexity from other classes. 
+Another example of encapsulation is a capsule. Basically, capsule encapsulate several combinations of medicine. If combinations of medicine are variables and methods then the capsule will act as a class and the whole process is called Encapsulation.
+Encapsulation in Java
+In the encapsulation technique, we declare the fields as private in the class to prevent other classes from accessing them directly. The required encapsulated data can be accessed by using public Java getter and setter method.
+If the field is declared private in the class then it cannot be accessed by anyone from outside the class and hides the field within the class. Therefore, it is also called data hiding. 
+
+Let's understand Encapsulation in java by taking real-time examples.
+Real-time Examples of Encapsulation in Java
+Real-time Example 1:
+School bag is one of the most real examples of Encapsulation. School bag can keep our books, pens etc.
+
+Real-time Example 2: 
+When you log into your email accounts such as Gmail, Yahoo mail, or Rediff mail, there is a lot of internal processes taking place in the backend and you have no control over it. When you enter the password for logging, they are retrieved in an encrypted form and verified and then you are given the access to your account. You do not have control over it that how the password has been verified. Thus, it keeps our account safe from being misused.
+
+Real-time Example 3: 
+Suppose you have an account in the bank. If your balance variable is declared as a public variable in the bank software, your account balance will be known as public, In this case, anyone can know your account balance. So, would you like it? Obviously No. 
+So, they declare balance variable as private for making your account safe, so that anyone cannot see your account balance. The person who has to see his account balance, he will have to access private members only through methods defined inside that class and this method will ask your account holder name or user Id, and password for authentication. 
+Thus, We can achieve security by utilizing the concept of data hiding. This is called Encapsulation.
+
+
+
+  
+
+
+
+

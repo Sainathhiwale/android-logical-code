@@ -1,0 +1,36 @@
+#support multiple screen android design
+
+A> screen size - 4 categories of android devices
+1> small   2 to 3.7
+2> Normal  3.7 to 4.3
+3> large   4.0 to 7.1
+4> extralarge 7.0 to 10.0
+
+B> Screen Density - 4 categories of android device
+1> low density  100 dpi to 130 dpi(ldpi-100)
+2> Medium density 120 dpi to 180 dpi(mdpi -120/180) 
+3> Hight density 180 dpi to 280 dpi(hdpi -280)
+4> extra high density 280 dpi to 360 dpi(xhdpi-300)
+
+note: Unit of dimension at runtime, dp is converted
+into pixels.
+number of pixel in a physical area.
+simple dost per inch(dpi) 
+for any widgets and view use dp(button)
+for textsize use sp(scale pixel)
+
+# why use dp pixel not?
+at runtime dp is converted into pixels
+px =dp*(dpi/160)
+#Screen size is measured diagonally
+screen resolution
+#half hd 720*1280 pixels
+vertical screen size 1280 pixels
+horizential screen size 720 pixels
+#full hd 1080*1920 pixels
+vertical screen size 1920 pixels
+horizential screen size 1080 pixels
+
+what is px,dp and sp
+1>pixel[px]
+- one physical dot on screen represents a pixel(signle dot on screen)

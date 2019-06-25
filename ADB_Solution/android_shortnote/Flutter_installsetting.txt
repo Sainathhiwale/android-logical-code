@@ -1,0 +1,14 @@
+setting link::https://ayusch.com/getting-started-with-flutter-app-development/
+1> install plugin
+   dart language and flutter language
+2>install fluttersdk 
+c:/src/flutter
+note:do not install flutter zip file into c:/program file
+3> go to c:/src/flutter
+   open flutter_console.bat 
+   run it
+4> check  everything is ready to run flutter app
+   command flutter doctor
+   if not do it setting in enverioment variable
+
+
