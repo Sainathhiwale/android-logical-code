@@ -7,3 +7,7 @@ Steps I followed 1) Execute the command adb nodaemon server in command prompt Ou
 4) Restart eclipse or other IDE
 
 The above steps worked for me.
+1>adb nodaemon server
+2> netstat -ano | findstr "5037"
+3> View the task manager, close all adb.exe
+4>Restart eclipse or other IDE
